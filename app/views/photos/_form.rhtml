@@ -1,0 +1,28 @@
+<% form_for @photo, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <% if logged_in? %>
+    <%= f.hidden_field :user_id,:value => current_user.id %>
+  <% end %>
+  <% if action_name == "new" %>
+    <p>
+      <%= f.label :is_avatar,"是否作为头像" %>
+      <%= f.check_box :is_avatar %>
+    </p>
+  <% end %>
+  <p>
+    <%= f.file_field :image %><br />
+    或者通过URL<%= f.text_field :image_url %>
+  </p>
+  <%- unless @photo.new_record? || !@photo.image? -%>
+    <div>
+      <%= image_tag(@photo.image.url(:gallery), :alt => 'Photo', :title => '当前图片') %>
+      <p>
+        <%= f.label(:delete_image, '删除图片') %>
+        <%= f.check_box(:delete_image) %>
+      </p>
+    </div>
+  <%- end -%>
+  <p>
+    <button type="submit"><%= button_name  %></button>
+  </p>
+<% end %>

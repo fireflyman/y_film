@@ -1,3 +1,4 @@
+auth\:gen\:site_key=Generates config/initializers/site_keys.rb
 db\:abort_if_pending_migrations=Raises an error if there are pending migrations
 db\:charset=Retrieves the charset for the current environment's database
 db\:collation=Retrieves the collation for the current environment's database
@@ -41,6 +42,10 @@ doc\:clobber_plugins=Remove plugin documentation
 doc\:clobber_rails=Remove rdoc products
 doc\:guides=Generate Rails guides
 doc\:plugins=Generate documentation for all installed plugins
+doc\:plugins\:paperclip=Generate documentation for the paperclip plugin
+doc\:plugins\:restful-authentication=Generate documentation for the restful-authentication plugin
+doc\:plugins\:technoweenie-restful-authentication-03e0075.zip=Generate documentation for the technoweenie-restful-authentication-03e0075.zip plugin
+doc\:plugins\:thoughtbot-paperclip-v2.3.8-30-g1738ea1.zip=Generate documentation for the thoughtbot-paperclip-v2.3.8-30-g1738ea1.zip plugin
 doc\:rails=Build the RDOC HTML Files
 doc\:reapp=Force a rebuild of the RDOC files
 doc\:rerails=Force a rebuild of the RDOC files
@@ -60,6 +65,10 @@ notes\:custom=Enumerate a custom annotation, specify with ANNOTATION=WTFHAX
 notes\:fixme=Enumerate all FIXME annotations
 notes\:optimize=Enumerate all OPTIMIZE annotations
 notes\:todo=Enumerate all TODO annotations
+paperclip\:clean=Cleans out invalid attachments. Useful after you've added new validations.
+paperclip\:refresh=Refreshes both metadata and thumbnails.
+paperclip\:refresh\:metadata=Regenerates content_type/size metadata for a given CLASS (and optional ATTACHMENT).
+paperclip\:refresh\:thumbnails=Regenerates thumbnails for a given CLASS (and optional ATTACHMENT).
 rails\:freeze\:edge=Lock to latest Edge Rails, for a specific release use RELEASE=1.2.0
 rails\:freeze\:gems=Lock this application to the current gems (by unpacking them into vendor/rails)
 rails\:template=Applies the template supplied by LOCATION=/path/to/template

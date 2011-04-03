@@ -1,0 +1,1781 @@
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (62.5ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (140.6ms)[0m   [0;1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20110403075920)
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (46.9ms)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(40), `name` varchar(100) DEFAULT '', `email` varchar(100), `crypted_password` varchar(40), `salt` varchar(40), `created_at` datetime, `updated_at` datetime, `remember_token` varchar(40), `remember_token_expires_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (93.8ms)[0m   [0mCREATE UNIQUE INDEX `index_users_on_login` ON `users` (`login`)[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20110403075920')[0m
+Migrating to CreatePhotos (20110403075930)
+  [4;35;1mSQL (31.2ms)[0m   [0mCREATE TABLE `photos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `is_avatar` tinyint(1), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20110403075930')[0m
+Migrating to AddAttachmentsImageToPhoto (20110403080527)
+  [4;35;1mSQL (109.4ms)[0m   [0mALTER TABLE `photos` ADD `image_file_name` varchar(255)[0m
+  [4;36;1mSQL (109.4ms)[0m   [0;1mALTER TABLE `photos` ADD `image_content_type` varchar(255)[0m
+  [4;35;1mSQL (93.8ms)[0m   [0mALTER TABLE `photos` ADD `image_file_size` int(11)[0m
+  [4;36;1mSQL (109.4ms)[0m   [0;1mALTER TABLE `photos` ADD `image_updated_at` datetime[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110403080527')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `photos`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `photos`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:16:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x3fba6d8>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (62.5ms)
+Rendered rescues/_request_and_response (46.9ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:18:12) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x3fb89f8>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:18:14) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x406f080>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:18:55) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x3cea108>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:18:57) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x3e25090>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (93.8ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:20:44) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x3f83c28>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:20:45) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x2c9e788>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:20:46) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x3d51f68>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (93.8ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:20:47) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x3e9c088>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (93.8ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:20:48) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x403bdb0>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:20:49) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x33d41c0>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:24:29) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x3fb93e8>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:24:31) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x4070a48>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:24:36) [GET]
+
+ActionController::RoutingError (No route matches "/phptp" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:24:43) [GET]
+
+ActionController::RoutingError (No route matches "/photo" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:24:48) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x407e698>) on line #18 of app/views/layouts/application.html.erb:
+15:       <%- flash.each do |name, msg| -%>
+16:         <%= content_tag :div, msg, :class => "#{name}" %>
+17:       <%- end -%>
+18:       <%- if show_title? -%>
+19:         <h1><%=h yield(:title) %></h1>
+20:       <%- end -%>
+21:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:18
+    app/controllers/photos_controller.rb:7:in `index'
+
+Rendered rescues/_trace (62.5ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:26:15) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x3298fb0>) on line #17 of app/views/layouts/application.html.erb:
+14:       <%- flash.each do |name, msg| -%>
+15:         <%= content_tag :div, msg, :class => "#{name}" %>
+16:       <%- end -%>
+17:       <%- if show_title? -%>
+18:         <h1><%=h yield(:title) %></h1>
+19:       <%- end -%>
+20:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:17
+    app/controllers/photos_controller.rb:7:in `index'
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:26:17) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x5896950>) on line #17 of app/views/layouts/application.html.erb:
+14:       <%- flash.each do |name, msg| -%>
+15:         <%= content_tag :div, msg, :class => "#{name}" %>
+16:       <%- end -%>
+17:       <%- if show_title? -%>
+18:         <h1><%=h yield(:title) %></h1>
+19:       <%- end -%>
+20:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:17
+    app/controllers/photos_controller.rb:7:in `index'
+
+Rendered rescues/_trace (62.5ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:26:18) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x59f0448>) on line #17 of app/views/layouts/application.html.erb:
+14:       <%- flash.each do |name, msg| -%>
+15:         <%= content_tag :div, msg, :class => "#{name}" %>
+16:       <%- end -%>
+17:       <%- if show_title? -%>
+18:         <h1><%=h yield(:title) %></h1>
+19:       <%- end -%>
+20:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:17
+    app/controllers/photos_controller.rb:7:in `index'
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:26:36) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+Rendered users/_user_bar (0.0ms)
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:27:24) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x57fa368>) on line #17 of app/views/layouts/application.html.erb:
+14:       <%- flash.each do |name, msg| -%>
+15:         <%= content_tag :div, msg, :class => "#{name}" %>
+16:       <%- end -%>
+17:       <%- if show_title? -%>
+18:         <h1><%=h yield(:title) %></h1>
+19:       <%- end -%>
+20:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:17
+    app/controllers/photos_controller.rb:7:in `index'
+
+Rendered rescues/_trace (125.0ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:27:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x594de60>) on line #17 of app/views/layouts/application.html.erb:
+14:       <%- flash.each do |name, msg| -%>
+15:         <%= content_tag :div, msg, :class => "#{name}" %>
+16:       <%- end -%>
+17:       <%- if show_title? -%>
+18:         <h1><%=h yield(:title) %></h1>
+19:       <%- end -%>
+20:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:17
+    app/controllers/photos_controller.rb:7:in `index'
+
+Rendered rescues/_trace (62.5ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:29:44) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x57af6e0>) on line #17 of app/views/layouts/application.html.erb:
+14:       <%- flash.each do |name, msg| -%>
+15:         <%= content_tag :div, msg, :class => "#{name}" %>
+16:       <%- end -%>
+17:       <%- if show_title? -%>
+18:         <h1><%=h yield(:title) %></h1>
+19:       <%- end -%>
+20:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:17
+    app/controllers/photos_controller.rb:7:in `index'
+
+Rendered rescues/_trace (109.4ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:30:37) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x591c1b0>) on line #17 of app/views/layouts/application.html.erb:
+14:       <%- flash.each do |name, msg| -%>
+15:         <%= content_tag :div, msg, :class => "#{name}" %>
+16:       <%- end -%>
+17:       <%- if show_title? -%>
+18:         <h1><%=h yield(:title) %></h1>
+19:       <%- end -%>
+20:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:17
+    app/controllers/photos_controller.rb:7:in `index'
+
+Rendered rescues/_trace (62.5ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:30:39) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+
+ActionView::TemplateError (undefined method `show_title?' for #<ActionView::Base:0x5785740>) on line #17 of app/views/layouts/application.html.erb:
+14:       <%- flash.each do |name, msg| -%>
+15:         <%= content_tag :div, msg, :class => "#{name}" %>
+16:       <%- end -%>
+17:       <%- if show_title? -%>
+18:         <h1><%=h yield(:title) %></h1>
+19:       <%- end -%>
+20:       <%= render :partial => "users/user_bar" %>
+
+    app/views/layouts/application.html.erb:17
+    app/controllers/photos_controller.rb:7:in `index'
+
+Rendered rescues/_trace (46.9ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:30:53) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+Rendered users/_user_bar (0.0ms)
+Completed in 16ms (View: 0, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2011-04-03 16:30:55) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered users/_user_bar (0.0ms)
+Completed in 172ms (View: 172, DB: 0) | 200 OK [http://localhost/login]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2011-04-03 16:31:05) [POST]
+  Parameters: {"commit"=>"Log in", "action"=>"create", "authenticity_token"=>"rcQp0FKo4LIuWL6cVExrZVgUxzhQZVRz0P3weyX1yjs=", "controller"=>"sessions", "login"=>"wd829", "password"=>"[FILTERED]"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`login` = 'wd829') LIMIT 1[0m
+Failed login for 'wd829' from 127.0.0.1 at Sun Apr 03 08:31:05 UTC 2011
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 16, DB: 0) | 200 OK [http://localhost/session]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#new (for 127.0.0.1 at 2011-04-03 16:31:07) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+Rendering template within layouts/application
+Rendering users/new
+Rendered users/_user_bar (15.6ms)
+Completed in 94ms (View: 78, DB: 0) | 200 OK [http://localhost/signup]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#create (for 127.0.0.1 at 2011-04-03 16:31:23) [POST]
+  Parameters: {"user"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"wd829", "email"=>"471870157@qq.com"}, "commit"=>"Sign up", "action"=>"create", "authenticity_token"=>"rcQp0FKo4LIuWL6cVExrZVgUxzhQZVRz0P3weyX1yjs=", "controller"=>"users"}
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`login` = BINARY 'wd829') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (`users`.`email` = BINARY '471870157@qq.com') LIMIT 1[0m
+  [4;36;1mUser Create (0.0ms)[0m   [0;1mINSERT INTO `users` (`name`, `salt`, `updated_at`, `crypted_password`, `remember_token_expires_at`, `remember_token`, `login`, `email`, `created_at`) VALUES('', '068bdaebc5b59e34c485c3de956c9502bde1a6a9', '2011-04-03 08:31:23', 'fccc451c6d87a7ae75c118ec4659c8d1f48eca0f', NULL, NULL, 'wd829', '471870157@qq.com', '2011-04-03 08:31:23')[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed in 109ms (DB: 16) | 302 Found [http://localhost/users]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:31:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:31:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 31ms (View: 31, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#new (for 127.0.0.1 at 2011-04-03 16:31:26) [GET]
+  Parameters: {"action"=>"new", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+Rendering template within layouts/application
+Rendering photos/new
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (31.2ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/new]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#new (for 127.0.0.1 at 2011-04-03 16:32:37) [GET]
+  Parameters: {"action"=>"new", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+Rendering template within layouts/application
+Rendering photos/new
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered photos/_form (93.8ms)
+Rendered users/_user_bar (15.6ms)
+Completed in 203ms (View: 172, DB: 0) | 200 OK [http://localhost/photos/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#create (for 127.0.0.1 at 2011-04-03 16:32:46) [POST]
+  Parameters: {"photo"=>{"is_avatar"=>"1", "user_id"=>"1", "image"=>#<File:C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/RackMultipart.2296.0>}, "action"=>"create", "authenticity_token"=>"rcQp0FKo4LIuWL6cVExrZVgUxzhQZVRz0P3weyX1yjs=", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPhoto Create (0.0ms)[0m   [0mINSERT INTO `photos` (`image_file_size`, `updated_at`, `image_content_type`, `is_avatar`, `user_id`, `image_updated_at`, `created_at`, `image_file_name`) VALUES(16755, '2011-04-03 08:32:46', 'image/jpeg', 1, 1, '2011-04-03 08:32:46', '2011-04-03 08:32:46', 't_shirt_404.jpg')[0m
+[paperclip] Saving attachments.
+[paperclip] saving d:/work/y_film/public/system/images/1/original/t_shirt_404.jpg
+  [4;36;1mSQL (31.2ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/photos/1
+Completed in 297ms (DB: 47) | 302 Found [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:32:46) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 31ms (View: 16, DB: 16) | 200 OK [http://localhost/photos/1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:32:48) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20110403075920)
+Migrating to CreatePhotos (20110403075930)
+Migrating to AddAttachmentsImageToPhoto (20110403080527)
+Migrating to AddImageRemoteUrlToPhoto (20110403083304)
+  [4;36;1mSQL (125.0ms)[0m   [0;1mALTER TABLE `photos` ADD `image_remote_url` varchar(255)[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110403083304')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `photos`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `photos`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#new (for 127.0.0.1 at 2011-04-03 16:34:00) [GET]
+  Parameters: {"action"=>"new", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+Rendering template within layouts/application
+Rendering photos/new
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered photos/_form (93.8ms)
+Rendered users/_user_bar (15.6ms)
+Completed in 234ms (View: 172, DB: 16) | 200 OK [http://localhost/photos/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#create (for 127.0.0.1 at 2011-04-03 16:34:20) [POST]
+  Parameters: {"photo"=>{"image_url"=>"http://dl.iteye.com/upload/picture/pic/75387/15a108ba-1084-3e8c-b854-fec7464d557d.jpg", "is_avatar"=>"1", "user_id"=>"1"}, "action"=>"create", "authenticity_token"=>"rcQp0FKo4LIuWL6cVExrZVgUxzhQZVRz0P3weyX1yjs=", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPhoto Create (0.0ms)[0m   [0mINSERT INTO `photos` (`image_file_size`, `updated_at`, `image_content_type`, `image_remote_url`, `is_avatar`, `user_id`, `image_updated_at`, `created_at`, `image_file_name`) VALUES(26884, '2011-04-03 08:34:21', 'image/jpeg', 'http://dl.iteye.com/upload/picture/pic/75387/15a108ba-1084-3e8c-b854-fec7464d557d.jpg', 1, 1, '2011-04-03 08:34:21', '2011-04-03 08:34:21', '15a108ba-1084-3e8c-b854-fec7464d557d.jpg')[0m
+[paperclip] Saving attachments.
+[paperclip] saving d:/work/y_film/public/system/images/2/original/15a108ba-1084-3e8c-b854-fec7464d557d.jpg
+  [4;36;1mSQL (15.6ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/photos/2
+Completed in 1016ms (DB: 16) | 302 Found [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:34:21) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 2) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/2]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:34:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mPhoto Columns (31.2ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 78ms (View: 16, DB: 47) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#new (for 127.0.0.1 at 2011-04-03 16:34:49) [GET]
+  Parameters: {"action"=>"new", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+Rendering template within layouts/application
+Rendering photos/new
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered photos/_form (109.4ms)
+Rendered users/_user_bar (0.0ms)
+Completed in 156ms (View: 125, DB: 0) | 200 OK [http://localhost/photos/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#create (for 127.0.0.1 at 2011-04-03 16:34:51) [POST]
+  Parameters: {"photo"=>{"image_url"=>"http://dl.iteye.com/upload/picture/pic/75387/15a108ba-1084-3e8c-b854-fec7464d557d.jpg", "is_avatar"=>"0", "user_id"=>"1"}, "action"=>"create", "authenticity_token"=>"rcQp0FKo4LIuWL6cVExrZVgUxzhQZVRz0P3weyX1yjs=", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPhoto Create (0.0ms)[0m   [0mINSERT INTO `photos` (`image_file_size`, `updated_at`, `image_content_type`, `image_remote_url`, `is_avatar`, `user_id`, `image_updated_at`, `created_at`, `image_file_name`) VALUES(26884, '2011-04-03 08:34:52', 'image/jpeg', 'http://dl.iteye.com/upload/picture/pic/75387/15a108ba-1084-3e8c-b854-fec7464d557d.jpg', 0, 1, '2011-04-03 08:34:52', '2011-04-03 08:34:52', '15a108ba-1084-3e8c-b854-fec7464d557d.jpg')[0m
+[paperclip] Saving attachments.
+[paperclip] saving d:/work/y_film/public/system/images/3/original/15a108ba-1084-3e8c-b854-fec7464d557d.jpg
+  [4;36;1mSQL (46.9ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/photos/3
+Completed in 531ms (DB: 47) | 302 Found [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:34:52) [GET]
+  Parameters: {"action"=>"show", "id"=>"3", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 3) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 31ms (View: 16, DB: 0) | 200 OK [http://localhost/photos/3]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:35:04) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:42:30) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;36;1mPhoto Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 62ms (View: 16, DB: 31) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:42:30) [GET]
+  Parameters: {"1301819566"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/1/thumb/t_shirt_404.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:42:30) [GET]
+  Parameters: {"1301819692"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/3/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:42:30) [GET]
+  Parameters: {"1301819661"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/2/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:42:32) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mPhoto Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 62ms (View: 16, DB: 31) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:42:32) [GET]
+  Parameters: {"1301819566"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/1/thumb/t_shirt_404.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:42:33) [GET]
+  Parameters: {"1301819661"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/2/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:42:33) [GET]
+  Parameters: {"1301819692"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/3/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#edit (for 127.0.0.1 at 2011-04-03 16:42:35) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/edit
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered photos/_form (31.2ms)
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/1/edit]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:42:35) [GET]
+  Parameters: {"1301819566"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/1/gallery/t_shirt_404.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#update (for 127.0.0.1 at 2011-04-03 16:42:48) [PUT]
+  Parameters: {"photo"=>{"image_url"=>"", "delete_image"=>"1", "user_id"=>"1", "image"=>#<File:C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/RackMultipart.292.0>}, "action"=>"update", "_method"=>"put", "authenticity_token"=>"rcQp0FKo4LIuWL6cVExrZVgUxzhQZVRz0P3weyX1yjs=", "id"=>"1", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-707354-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-707354-0.jpg[0]" -resize "150x150>" "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-707354-0110403-292-19d9qu3-0" 2>NUL
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-707354-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-707354-0.jpg[0]" -resize "200x200>" "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-707354-0110403-292-wswiov-0" 2>NUL
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-707354-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-707354-0.jpg[0]" -resize "100x" -crop "100x100+0+16" +repage "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-707354-0110403-292-18ksmd1-0" 2>NUL
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mPhoto Update (0.0ms)[0m   [0;1mUPDATE `photos` SET `image_file_name` = 'http_imgloa.jpg', `image_file_size` = 41286, `image_updated_at` = '2011-04-03 08:42:48', `updated_at` = '2011-04-03 08:42:49' WHERE `id` = 1[0m
+[paperclip] Saving attachments.
+[paperclip] deleting d:/work/y_film/public/system/images/1/original/t_shirt_404.jpg
+[paperclip] saving d:/work/y_film/public/system/images/1/gallery/http_imgloa.jpg
+[paperclip] saving d:/work/y_film/public/system/images/1/avatar/http_imgloa.jpg
+[paperclip] saving d:/work/y_film/public/system/images/1/original/http_imgloa.jpg
+[paperclip] saving d:/work/y_film/public/system/images/1/thumb/http_imgloa.jpg
+  [4;35;1mSQL (15.6ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/photos/1
+Completed in 2000ms (DB: 16) | 302 Found [http://localhost/photos/1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:42:50) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:42:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 16, DB: 16) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:42:56) [GET]
+  Parameters: {"1301819661"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/2/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:42:56) [GET]
+  Parameters: {"1301819692"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/3/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:43:00) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (15.6ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 47ms (View: 16, DB: 16) | 200 OK [http://localhost/photos/1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:43:02) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (15.6ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 16) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:43:02) [GET]
+  Parameters: {"1301819692"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/3/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:43:02) [GET]
+  Parameters: {"1301819661"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/2/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#edit (for 127.0.0.1 at 2011-04-03 16:43:03) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/edit
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered photos/_form (31.2ms)
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/1/edit]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:43:27) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:43:27) [GET]
+  Parameters: {"1301819661"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/2/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:43:27) [GET]
+  Parameters: {"1301819692"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/3/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:43:31) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 0, DB: 16) | 200 OK [http://localhost/photos/1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:43:33) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 172ms (View: 125, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:43:33) [GET]
+  Parameters: {"1301819661"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/2/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:43:33) [GET]
+  Parameters: {"1301819692"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/3/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:43:35) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:43:36) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:43:37) [GET]
+  Parameters: {"1301819661"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/2/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:43:37) [GET]
+  Parameters: {"1301819692"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/3/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#edit (for 127.0.0.1 at 2011-04-03 16:43:37) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/edit
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered photos/_form (15.6ms)
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/1/edit]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:43:39) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 203ms (View: 141, DB: 0) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:43:39) [GET]
+  Parameters: {"1301819692"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/3/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:43:39) [GET]
+  Parameters: {"1301819661"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/2/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#edit (for 127.0.0.1 at 2011-04-03 16:43:41) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 2) [0m
+Rendering template within layouts/application
+Rendering photos/edit
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered photos/_form (15.6ms)
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/2/edit]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:43:41) [GET]
+  Parameters: {"1301819661"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/2/gallery/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#update (for 127.0.0.1 at 2011-04-03 16:43:59) [PUT]
+  Parameters: {"photo"=>{"image_url"=>"http://dl.iteye.com/upload/picture/pic/75387/15a108ba-1084-3e8c-b854-fec7464d557d.jpg", "delete_image"=>"1", "user_id"=>"1"}, "action"=>"update", "_method"=>"put", "authenticity_token"=>"rcQp0FKo4LIuWL6cVExrZVgUxzhQZVRz0P3weyX1yjs=", "id"=>"2", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 2) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-bkglxx-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-bkglxx-0.jpg[0]" -resize "150x150>" "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-bkglxx-0110403-292-12w7zi2-0" 2>NUL
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-bkglxx-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-bkglxx-0.jpg[0]" -resize "200x200>" "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-bkglxx-0110403-292-19mly18-0" 2>NUL
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-bkglxx-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-bkglxx-0.jpg[0]" -resize "x100" -crop "100x100+4+0" +repage "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-bkglxx-0110403-292-xx1uea-0" 2>NUL
+  [4;35;1mPhoto Update (0.0ms)[0m   [0mUPDATE `photos` SET `image_updated_at` = '2011-04-03 08:44:00', `updated_at` = '2011-04-03 08:44:01' WHERE `id` = 2[0m
+[paperclip] Saving attachments.
+[paperclip] deleting d:/work/y_film/public/system/images/2/original/15a108ba-1084-3e8c-b854-fec7464d557d.jpg
+[paperclip] saving d:/work/y_film/public/system/images/2/gallery/15a108ba-1084-3e8c-b854-fec7464d557d.jpg
+[paperclip] saving d:/work/y_film/public/system/images/2/avatar/15a108ba-1084-3e8c-b854-fec7464d557d.jpg
+[paperclip] saving d:/work/y_film/public/system/images/2/original/15a108ba-1084-3e8c-b854-fec7464d557d.jpg
+[paperclip] saving d:/work/y_film/public/system/images/2/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg
+  [4;36;1mSQL (31.2ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/photos/2
+Completed in 1578ms (DB: 31) | 302 Found [http://localhost/photos/2]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:44:01) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 2) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 188ms (View: 109, DB: 0) | 200 OK [http://localhost/photos/2]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:44:03) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:44:03) [GET]
+  Parameters: {"1301819692"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/3/thumb/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#edit (for 127.0.0.1 at 2011-04-03 16:44:05) [GET]
+  Parameters: {"action"=>"edit", "id"=>"3", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 3) [0m
+Rendering template within layouts/application
+Rendering photos/edit
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered photos/_form (15.6ms)
+Rendered users/_user_bar (15.6ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/3/edit]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-04-03 16:44:05) [GET]
+  Parameters: {"1301819692"=>nil}
+
+ActionController::RoutingError (No route matches "/system/images/3/gallery/15a108ba-1084-3e8c-b854-fec7464d557d.jpg" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#update (for 127.0.0.1 at 2011-04-03 16:44:15) [PUT]
+  Parameters: {"photo"=>{"image_url"=>"", "delete_image"=>"1", "user_id"=>"1", "image"=>#<File:C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/RackMultipart.292.1>}, "action"=>"update", "_method"=>"put", "authenticity_token"=>"rcQp0FKo4LIuWL6cVExrZVgUxzhQZVRz0P3weyX1yjs=", "id"=>"3", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 3) [0m
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-b6ej6l-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-b6ej6l-0.jpg[0]" -resize "150x150>" "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-b6ej6l-0110403-292-10xeptw-0" 2>NUL
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-b6ej6l-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-b6ej6l-0.jpg[0]" -resize "200x200>" "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-b6ej6l-0110403-292-5bscl2-0" 2>NUL
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-b6ej6l-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-b6ej6l-0.jpg[0]" -resize "x100" -crop "100x100+11+0" +repage "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-b6ej6l-0110403-292-1r31z4w-0" 2>NUL
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mPhoto Update (0.0ms)[0m   [0;1mUPDATE `photos` SET `image_file_name` = '1301015523841.jpg', `image_file_size` = 30331, `image_updated_at` = '2011-04-03 08:44:15', `updated_at` = '2011-04-03 08:44:16' WHERE `id` = 3[0m
+[paperclip] Saving attachments.
+[paperclip] deleting d:/work/y_film/public/system/images/3/original/15a108ba-1084-3e8c-b854-fec7464d557d.jpg
+[paperclip] saving d:/work/y_film/public/system/images/3/gallery/1301015523841.jpg
+[paperclip] saving d:/work/y_film/public/system/images/3/avatar/1301015523841.jpg
+[paperclip] saving d:/work/y_film/public/system/images/3/original/1301015523841.jpg
+[paperclip] saving d:/work/y_film/public/system/images/3/thumb/1301015523841.jpg
+  [4;35;1mSQL (15.6ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/photos/3
+Completed in 1219ms (DB: 16) | 302 Found [http://localhost/photos/3]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:44:16) [GET]
+  Parameters: {"action"=>"show", "id"=>"3", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 3) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 156ms (View: 109, DB: 0) | 200 OK [http://localhost/photos/3]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:44:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#new (for 127.0.0.1 at 2011-04-03 16:44:26) [GET]
+  Parameters: {"action"=>"new", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+Rendering template within layouts/application
+Rendering photos/new
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered photos/_form (15.6ms)
+Rendered users/_user_bar (0.0ms)
+Completed in 31ms (View: 16, DB: 16) | 200 OK [http://localhost/photos/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#create (for 127.0.0.1 at 2011-04-03 16:44:38) [POST]
+  Parameters: {"photo"=>{"image_url"=>"", "is_avatar"=>"1", "user_id"=>"1", "image"=>#<File:C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/RackMultipart.292.0>}, "action"=>"create", "authenticity_token"=>"rcQp0FKo4LIuWL6cVExrZVgUxzhQZVRz0P3weyX1yjs=", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-654b46-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-654b46-0.jpg[0]" -resize "150x150>" "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-654b46-0110403-292-15qp63j-0" 2>NUL
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-654b46-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-654b46-0.jpg[0]" -resize "200x200>" "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-654b46-0110403-292-ksxezw-0" 2>NUL
+[paperclip] identify -format %wx%h "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-654b46-0.jpg[0]" 2>NUL
+[paperclip] convert "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-654b46-0.jpg[0]" -resize "x100" -crop "100x100+1+0" +repage "C:/DOCUME~1/ADMINI~1/LOCALS~1/Temp/stream110403-292-654b46-0110403-292-1k1vool-0" 2>NUL
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPhoto Create (0.0ms)[0m   [0mINSERT INTO `photos` (`image_file_size`, `updated_at`, `image_content_type`, `image_remote_url`, `is_avatar`, `user_id`, `image_updated_at`, `created_at`, `image_file_name`) VALUES(16755, '2011-04-03 08:44:39', 'image/jpeg', NULL, 1, 1, '2011-04-03 08:44:38', '2011-04-03 08:44:39', 't_shirt_404.jpg')[0m
+[paperclip] Saving attachments.
+[paperclip] saving d:/work/y_film/public/system/images/4/gallery/t_shirt_404.jpg
+[paperclip] saving d:/work/y_film/public/system/images/4/avatar/t_shirt_404.jpg
+[paperclip] saving d:/work/y_film/public/system/images/4/original/t_shirt_404.jpg
+[paperclip] saving d:/work/y_film/public/system/images/4/thumb/t_shirt_404.jpg
+  [4;36;1mSQL (15.6ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/photos/4
+Completed in 1203ms (DB: 16) | 302 Found [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:44:39) [GET]
+  Parameters: {"action"=>"show", "id"=>"4", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 4) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/4]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:44:40) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mPhoto Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 141ms (View: 94, DB: 16) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#edit (for 127.0.0.1 at 2011-04-03 16:44:43) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/edit
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered photos/_form (31.2ms)
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/1/edit]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:44:58) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 62ms (View: 47, DB: 0) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:46:55) [GET]
+  Parameters: {"action"=>"show", "id"=>"4", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 4) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 31ms (View: 16, DB: 0) | 200 OK [http://localhost/photos/4]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:46:57) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (15.6ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 16) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#show (for 127.0.0.1 at 2011-04-03 16:47:06) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"users"}
+
+ActionController::UnknownAction (No action responded to show. Actions: create, index, and new):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#show (for 127.0.0.1 at 2011-04-03 16:47:11) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"users"}
+
+ActionController::UnknownAction (No action responded to show. Actions: create, index, and new):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2011-04-03 16:47:31) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+Redirected to http://localhost:3000/
+Completed in 16ms (DB: 0) | 302 Found [http://localhost/logout]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-03 16:47:32) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:47:34) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 16, DB: 16) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:47:48) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (15.6ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 16, DB: 16) | 200 OK [http://localhost/photos/1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#edit (for 127.0.0.1 at 2011-04-03 16:47:50) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/edit
+Rendered photos/_form (31.2ms)
+Rendered users/_user_bar (0.0ms)
+Completed in 78ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/1/edit]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-03 16:47:52) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` [0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 62ms (View: 47, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-03 16:47:58) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/1]
