@@ -1,0 +1,20 @@
+<h1>Listing directors</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @directors.each do |director| %>
+  <tr>
+    <td><%=h director.name %></td>
+    <td><%= link_to 'Show', director %></td>
+    <td><%= link_to 'Edit', edit_director_path(director) %></td>
+    <td><%= link_to 'Destroy', director, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New director', new_director_path %>

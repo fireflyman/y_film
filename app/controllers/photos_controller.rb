@@ -2,8 +2,15 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.xml
   def index
-    @photos = Photo.all
-
+      #  @photos = Photo.find(params[:id])
+      #@photos = Photo.all
+    #
+    #    sort_by = params[:sort_by]
+    @photos = Photo.paginate(:page => params[:page],
+                             :per_page => params[:pre_page] || 3,
+                             :include => :user,
+                              # :conditions => "#{params[:category_id].to_i}And published = true",
+                              :order=>"created_at DESC")
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @photos }
