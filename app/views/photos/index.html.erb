@@ -7,14 +7,18 @@
     <th>预览</th>
   </tr>
 
-<% @photos.each do |t| %>
+<% @photos.each do |photo| %>
   <tr>
-    <td><%=h t.user(params[:login]) %></td>
-    <td><%= t.is_avatar ? "是":"否" %></td>
-    <td><%= image_tag t.image.url(:thumb) ,:alt =>"被GFW和谐了！" %></td>
-    <td><%= link_to 'Show', t %></td>
-    <td><%= link_to 'Edit', edit_photo_path(t) %></td>
-    <td><%= link_to 'Destroy', t, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if logged_in? %>
+    <td><%=h photo.user.login %></td>
+    <% else %>
+    <td><%= "没权限看你妹啊!"  %></td>
+    <% end %>
+    <td><%= photo.is_avatar ? "是":"否" %></td>
+    <td><%= image_tag photo.image.url(:thumb) ,:alt =>"被GFW和谐了！" %></td>
+    <td><%= link_to 'Show', photo %></td>
+    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
+    <td><%= link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
