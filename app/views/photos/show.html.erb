@@ -1,6 +1,5 @@
 <div class="figure">
   <%= image_tag @photo.image.url ,:alt =>"被GFW和谐了！" %>
-  <div class="legend">所有人：<%=h @photo.user.login %>；是否为头像：<%= @photo.is_avatar %></div>
-</div>
+ </div>
 <%= link_to '编辑', [:edit,@photo],:class => "button" %>
 <%= link_to '返回', photos_path,:class => "button"   %>

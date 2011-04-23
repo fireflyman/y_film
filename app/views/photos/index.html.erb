@@ -3,8 +3,11 @@
 <table>
   <tr>
     <th>所有人</th>
-    <th>是否作为头像</th>
     <th>预览</th>
+    <% if logged_in? %>
+    <th></th>
+    <th></th>
+    <% end %>
   </tr>
 
 <% @photos.each do |photo| %>
@@ -14,11 +17,14 @@
     <% else %>
     <td><%= "没权限看你妹啊!"  %></td>
     <% end %>
-    <td><%= photo.is_avatar ? "是":"否" %></td>
-    <td><%= image_tag photo.image.url(:thumb) ,:alt =>"被GFW和谐了！" %></td>
-    <td><%= link_to 'Show', photo %></td>
+  
+    <td><%= link_to [image_tag photo.image.url(:thumb) ,:alt =>"被GFW和谐了！"],photo%></td>
+      <% if logged_in? %>
     <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
     <td><%= link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% else %>
+    
+    <% end %>
   </tr>
 <% end %>
 </table>
@@ -32,5 +38,6 @@
     :next_label => 'Next'
   %>
 <hr />
-
+<% if logged_in? %>
 <%= link_to 'New photo', new_photo_path %>
+<% end %>
