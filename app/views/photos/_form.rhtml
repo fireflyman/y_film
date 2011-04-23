@@ -23,6 +23,12 @@
     </div>
   <%- end -%>
   <p>
+    <%= f.label :tags,'标签' %><br />
+    <%= f.text_field :tag_list,:size=>'60' %>*多个标签以","隔开
+  </p>
+  
+
+  <p>
     <button type="submit"><%= button_name  %></button>
   </p>
 <% end %>

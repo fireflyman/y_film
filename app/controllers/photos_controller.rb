@@ -2,20 +2,25 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.xml
   def index
-      #  @photos = Photo.find(params[:id])
-      #@photos = Photo.all
-    #
-    #    sort_by = params[:sort_by]
-    @photos = Photo.paginate(:page => params[:page],
-                             :per_page => params[:pre_page] || 3,
-                             :include => :user,
-                              # :conditions => "#{params[:category_id].to_i}And published = true",
-                              :order=>"created_at DESC")
+    @photos = Photo.paginate(:page =>params[:page]||1,
+      :per_page =>10,
+      :order=>"updated_at DESC")
+    tag_cloud
+
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @photos }
+      format.xml { render :xml => @photos }
     end
   end
+
+  #tag method
+  def tag_cloud
+    @tags = Photo.tag_counts
+  end
+
+  def tag
+    @photos= Photo.find_tagged_with(params[:id])
+  end  
 
   # GET /photos/1
   # GET /photos/1.xml

@@ -1,0 +1,5 @@
+<% @photos.each do |photo| %>
+<tr>
+    <td><%= link_to [image_tag photo.image.url(:thumb) ,:alt =>"被GFW和谐了！"],photo%></td>
+</tr>
+<% end %>

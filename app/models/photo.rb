@@ -1,7 +1,7 @@
 require 'open-uri'
 class Photo < ActiveRecord::Base
   belongs_to :user
-
+  acts_as_taggable  
   has_attached_file :image,
     :default_url   => "/images/rails.png",
     :styles => {

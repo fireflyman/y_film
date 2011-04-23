@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110407134543) do
+ActiveRecord::Schema.define(:version => 20110423090335) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(:version => 20110407134543) do
     t.string   "imdb"
     t.string   "starring"
     t.string   "screenwrite"
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
   end
 
   create_table "users", :force => true do |t|

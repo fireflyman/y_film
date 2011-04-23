@@ -4,40 +4,46 @@
   <tr>
     <th>所有人</th>
     <th>预览</th>
+    <th>标签筠</th>
     <% if logged_in? %>
-    <th></th>
-    <th></th>
+      <th></th>
+      <th></th>
     <% end %>
   </tr>
 
-<% @photos.each do |photo| %>
-  <tr>
-    <% if logged_in? %>
-    <td><%=h photo.user.login %></td>
-    <% else %>
-    <td><%= "没权限看你妹啊!"  %></td>
-    <% end %>
-  
-    <td><%= link_to [image_tag photo.image.url(:thumb) ,:alt =>"被GFW和谐了！"],photo%></td>
+  <% @photos.each do |photo| %>
+    <tr>
       <% if logged_in? %>
-    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-    <td><%= link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% else %>
-    
-    <% end %>
-  </tr>
-<% end %>
-</table>
+        <td><%=h photo.user.login %></td>
+      <% else %>
+        <td><%= "没权限看你妹啊!"  %></td>
+      <% end %>
+      
+      <td><%= link_to [image_tag photo.image.url(:thumb) ,:alt =>"被GFW和谐了！"],photo%></td>
+      <td><%= photo.tag_list %></td>
+      <% if logged_in? %>
+        <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
+        <td><%= link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete %></td>
+      <% else %>
 
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<div style="padding:20px">
+  tags: <% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+    <%= link_to tag.name, {:action => :tag, :id => tag.name }, :class => css_class %>
+  <% end %>
+</div>
 <br />
 
 <%= will_paginate @photos ,
-    :inner_window => 1,
-    :outer_window => 1,
-    :prev_label => 'Previous',
-    :next_label => 'Next'
-  %>
+  :inner_window => 1,
+  :outer_window => 1,
+  :prev_label => 'Previous',
+  :next_label => 'Next'
+%>
 <hr />
 <% if logged_in? %>
-<%= link_to 'New photo', new_photo_path %>
+  <%= link_to 'New photo', new_photo_path %>
 <% end %>

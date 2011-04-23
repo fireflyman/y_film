@@ -6748,3 +6748,590 @@ Rendering photos/index
 DEPRECATION WARNING: WillPaginate: :prev_label view parameter is now :previous_label; the old name has been deprecated. (called from _run_erb_app47views47photos47index46html46erb at d:/work/y_film/app/views/photos/index.html.erb:34)
 Rendered users/_user_bar (0.0ms)
 Completed in 47ms (View: 16, DB: 0) | 200 OK [http://localhost/photos?page=1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20110403075920)
+Migrating to CreatePhotos (20110403075930)
+Migrating to AddAttachmentsImageToPhoto (20110403080527)
+Migrating to AddImageRemoteUrlToPhoto (20110403083304)
+Migrating to CreateDirectors (20110407133947)
+Migrating to CreateCountries (20110407134007)
+Migrating to AddTitleToPhoto (20110407134543)
+Migrating to ActsAsTaggableMigration (20110423090335)
+  [4;36;1mSQL (46.9ms)[0m   [0;1mCREATE TABLE `tags` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB[0m
+  [4;35;1mSQL (46.9ms)[0m   [0mCREATE TABLE `taggings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `tag_id` int(11), `taggable_id` int(11), `taggable_type` varchar(255), `created_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (93.8ms)[0m   [0;1mCREATE INDEX `index_taggings_on_tag_id` ON `taggings` (`tag_id`)[0m
+  [4;35;1mSQL (93.8ms)[0m   [0mCREATE INDEX `index_taggings_on_taggable_id_and_taggable_type` ON `taggings` (`taggable_id`, `taggable_type`)[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20110423090335')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `countries`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `countries`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `directors`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `directors`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `directors`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `photos`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `photos`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `taggings`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `taggings`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `taggings`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `tags`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `tags`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `tags`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (15.6ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-23 17:09:32) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos", "page"=>"1"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` ORDER BY updated_at DESC LIMIT 0, 10[0m
+  [4;35;1mTag Load (15.6ms)[0m   [0mSELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN photos ON photos.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Photo') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 281ms (View: 188, DB: 16) | 200 OK [http://localhost/photos?page=1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2011-04-23 17:09:41) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered users/_user_bar (0.0ms)
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://localhost/login]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2011-04-23 17:09:48) [POST]
+  Parameters: {"commit"=>"Log in", "action"=>"create", "authenticity_token"=>"wbKwa3nW+NJfN9jEPOpiB5U8ZEHRpRHqzsxVusmT24E=", "controller"=>"sessions", "login"=>"wd829", "password"=>"[FILTERED]"}
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`login` = 'wd829') LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed in 78ms (DB: 0) | 302 Found [http://localhost/session]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2011-04-23 17:09:48) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (31.2ms)
+Completed in 31ms (View: 31, DB: 0) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-23 17:09:49) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` ORDER BY updated_at DESC LIMIT 0, 10[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN photos ON photos.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Photo') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 78ms (View: 62, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#edit (for 127.0.0.1 at 2011-04-23 17:10:01) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/edit
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mTagging Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `taggings`[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 1)) [0m
+Rendered photos/_form (31.2ms)
+Rendered users/_user_bar (0.0ms)
+Completed in 78ms (View: 62, DB: 0) | 200 OK [http://localhost/photos/1/edit]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#update (for 127.0.0.1 at 2011-04-23 17:10:06) [PUT]
+  Parameters: {"photo"=>{"image_url"=>"", "tag_list"=>"rails", "delete_image"=>"0", "user_id"=>"1"}, "action"=>"update", "_method"=>"put", "authenticity_token"=>"wbKwa3nW+NJfN9jEPOpiB5U8ZEHRpRHqzsxVusmT24E=", "id"=>"1", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 1)) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT * FROM `tags` WHERE (name LIKE 'rails') LIMIT 1[0m
+  [4;36;1mTag Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `tags`[0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.id FROM `tags` WHERE (`tags`.`name` = BINARY 'rails') LIMIT 1[0m
+  [4;36;1mTag Create (0.0ms)[0m   [0;1mINSERT INTO `tags` (`name`) VALUES('rails')[0m
+  [4;35;1mTagging Create (0.0ms)[0m   [0mINSERT INTO `taggings` (`tag_id`, `taggable_type`, `taggable_id`, `created_at`) VALUES(1, 'Photo', 1, '2011-04-23 09:10:06')[0m
+[paperclip] Saving attachments.
+  [4;36;1mSQL (31.2ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/photos/1
+Completed in 62ms (DB: 47) | 302 Found [http://localhost/photos/1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-23 17:10:06) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (46.9ms)
+Completed in 172ms (View: 141, DB: 0) | 200 OK [http://localhost/photos/1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-23 17:10:08) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` ORDER BY updated_at DESC LIMIT 0, 10[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN photos ON photos.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Photo') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mPhoto Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 156ms (View: 109, DB: 16) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#tag (for 127.0.0.1 at 2011-04-23 17:10:09) [GET]
+  Parameters: {"action"=>"tag", "id"=>"rails", "controller"=>"photos"}
+  [4;35;1mPhoto Load (15.6ms)[0m   [0mSELECT DISTINCT photos.* FROM `photos` INNER JOIN taggings photos_taggings ON photos_taggings.taggable_id = photos.id AND photos_taggings.taggable_type = 'Photo' INNER JOIN tags photos_tags ON photos_tags.id = photos_taggings.tag_id WHERE ((photos_tags.name LIKE 'rails')) [0m
+Rendering template within layouts/application
+Rendering photos/tag
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 62ms (View: 31, DB: 16) | 200 OK [http://localhost/photos/tag/rails]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-23 17:10:59) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` ORDER BY updated_at DESC LIMIT 0, 10[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN photos ON photos.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Photo') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 94ms (View: 78, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#tag (for 127.0.0.1 at 2011-04-23 17:11:00) [GET]
+  Parameters: {"action"=>"tag", "id"=>"rails", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT DISTINCT photos.* FROM `photos` INNER JOIN taggings photos_taggings ON photos_taggings.taggable_id = photos.id AND photos_taggings.taggable_type = 'Photo' INNER JOIN tags photos_tags ON photos_tags.id = photos_taggings.tag_id WHERE ((photos_tags.name LIKE 'rails')) [0m
+Rendering template within layouts/application
+Rendering photos/tag
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/tag?id=rails]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-23 17:15:59) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` ORDER BY updated_at DESC LIMIT 0, 10[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN photos ON photos.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Photo') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 78ms (View: 62, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#tag (for 127.0.0.1 at 2011-04-23 17:16:01) [GET]
+  Parameters: {"action"=>"tag", "id"=>"rails", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT DISTINCT photos.* FROM `photos` INNER JOIN taggings photos_taggings ON photos_taggings.taggable_id = photos.id AND photos_taggings.taggable_type = 'Photo' INNER JOIN tags photos_tags ON photos_tags.id = photos_taggings.tag_id WHERE ((photos_tags.name LIKE 'rails')) [0m
+Rendering template within layouts/application
+Rendering photos/tag
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 47ms (View: 16, DB: 16) | 200 OK [http://localhost/photos/tag?id=rails]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#tag (for 127.0.0.1 at 2011-04-23 17:17:50) [GET]
+  Parameters: {"action"=>"tag", "id"=>"rails", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT DISTINCT photos.* FROM `photos` INNER JOIN taggings photos_taggings ON photos_taggings.taggable_id = photos.id AND photos_taggings.taggable_type = 'Photo' INNER JOIN tags photos_tags ON photos_tags.id = photos_taggings.tag_id WHERE ((photos_tags.name LIKE 'rails')) [0m
+Rendering template within layouts/application
+Rendering photos/tag
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (93.8ms)
+Completed in 250ms (View: 219, DB: 0) | 200 OK [http://localhost/photos/tag?id=rails]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#tag (for 127.0.0.1 at 2011-04-23 17:18:02) [GET]
+  Parameters: {"action"=>"tag", "id"=>"rails", "controller"=>"photos"}
+  [4;35;1mPhoto Load (15.6ms)[0m   [0mSELECT DISTINCT photos.* FROM `photos` INNER JOIN taggings photos_taggings ON photos_taggings.taggable_id = photos.id AND photos_taggings.taggable_type = 'Photo' INNER JOIN tags photos_tags ON photos_tags.id = photos_taggings.tag_id WHERE ((photos_tags.name LIKE 'rails')) [0m
+Rendering template within layouts/application
+Rendering photos/tag
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 62ms (View: 16, DB: 31) | 200 OK [http://localhost/photos/tag?id=rails]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#tag (for 127.0.0.1 at 2011-04-23 17:18:18) [GET]
+  Parameters: {"action"=>"tag", "id"=>"rails", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT DISTINCT photos.* FROM `photos` INNER JOIN taggings photos_taggings ON photos_taggings.taggable_id = photos.id AND photos_taggings.taggable_type = 'Photo' INNER JOIN tags photos_tags ON photos_tags.id = photos_taggings.tag_id WHERE ((photos_tags.name LIKE 'rails')) [0m
+Rendering template within layouts/application
+Rendering photos/tag
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/tag?id=rails]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#tag (for 127.0.0.1 at 2011-04-23 17:18:45) [GET]
+  Parameters: {"action"=>"tag", "id"=>"rails", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT DISTINCT photos.* FROM `photos` INNER JOIN taggings photos_taggings ON photos_taggings.taggable_id = photos.id AND photos_taggings.taggable_type = 'Photo' INNER JOIN tags photos_tags ON photos_tags.id = photos_taggings.tag_id WHERE ((photos_tags.name LIKE 'rails')) [0m
+Rendering template within layouts/application
+Rendering photos/tag
+  [4;36;1mPhoto Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 47ms (View: 16, DB: 16) | 200 OK [http://localhost/photos/tag?id=rails]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-23 17:18:47) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (46.9ms)
+Completed in 156ms (View: 78, DB: 0) | 200 OK [http://localhost/photos/1]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-23 17:18:49) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` ORDER BY updated_at DESC LIMIT 0, 10[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN photos ON photos.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Photo') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 78ms (View: 62, DB: 0) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-23 17:20:12) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` ORDER BY updated_at DESC LIMIT 0, 10[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN photos ON photos.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Photo') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 8)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 6)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 5)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 4)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 3)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 2)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 1)) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 94ms (View: 78, DB: 0) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#tag (for 127.0.0.1 at 2011-04-23 17:20:44) [GET]
+  Parameters: {"action"=>"tag", "id"=>"rails", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT DISTINCT photos.* FROM `photos` INNER JOIN taggings photos_taggings ON photos_taggings.taggable_id = photos.id AND photos_taggings.taggable_type = 'Photo' INNER JOIN tags photos_tags ON photos_tags.id = photos_taggings.tag_id WHERE ((photos_tags.name LIKE 'rails')) [0m
+Rendering template within layouts/application
+Rendering photos/tag
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 47ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/tag?id=rails]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-23 17:20:45) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 1) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 141ms (View: 31, DB: 0) | 200 OK [http://localhost/photos/1]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-23 17:20:47) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` ORDER BY updated_at DESC LIMIT 0, 10[0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN photos ON photos.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Photo') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;36;1mPhoto Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 8)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 6)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 5)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 4)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 3)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 2)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 1)) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 94ms (View: 62, DB: 16) | 200 OK [http://localhost/photos]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#edit (for 127.0.0.1 at 2011-04-23 17:20:49) [GET]
+  Parameters: {"action"=>"edit", "id"=>"8", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering photos/edit
+  [4;35;1mUser Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 8)) [0m
+Rendered photos/_form (31.2ms)
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 16, DB: 16) | 200 OK [http://localhost/photos/8/edit]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#update (for 127.0.0.1 at 2011-04-23 17:21:10) [PUT]
+  Parameters: {"photo"=>{"image_url"=>"", "tag_list"=>"rails,ruby,gg,favior", "delete_image"=>"0", "user_id"=>"1"}, "action"=>"update", "_method"=>"put", "authenticity_token"=>"wbKwa3nW+NJfN9jEPOpiB5U8ZEHRpRHqzsxVusmT24E=", "id"=>"8", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 8) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 8)) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT * FROM `tags` WHERE (name LIKE 'rails') LIMIT 1[0m
+  [4;35;1mTagging Create (0.0ms)[0m   [0mINSERT INTO `taggings` (`tag_id`, `taggable_type`, `taggable_id`, `created_at`) VALUES(1, 'Photo', 8, '2011-04-23 09:21:10')[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT * FROM `tags` WHERE (name LIKE 'ruby') LIMIT 1[0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.id FROM `tags` WHERE (`tags`.`name` = BINARY 'ruby') LIMIT 1[0m
+  [4;36;1mTag Create (0.0ms)[0m   [0;1mINSERT INTO `tags` (`name`) VALUES('ruby')[0m
+  [4;35;1mTagging Create (0.0ms)[0m   [0mINSERT INTO `taggings` (`tag_id`, `taggable_type`, `taggable_id`, `created_at`) VALUES(2, 'Photo', 8, '2011-04-23 09:21:10')[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT * FROM `tags` WHERE (name LIKE 'gg') LIMIT 1[0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.id FROM `tags` WHERE (`tags`.`name` = BINARY 'gg') LIMIT 1[0m
+  [4;36;1mTag Create (0.0ms)[0m   [0;1mINSERT INTO `tags` (`name`) VALUES('gg')[0m
+  [4;35;1mTagging Create (0.0ms)[0m   [0mINSERT INTO `taggings` (`tag_id`, `taggable_type`, `taggable_id`, `created_at`) VALUES(3, 'Photo', 8, '2011-04-23 09:21:10')[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT * FROM `tags` WHERE (name LIKE 'favior') LIMIT 1[0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.id FROM `tags` WHERE (`tags`.`name` = BINARY 'favior') LIMIT 1[0m
+  [4;36;1mTag Create (0.0ms)[0m   [0;1mINSERT INTO `tags` (`name`) VALUES('favior')[0m
+  [4;35;1mTagging Create (0.0ms)[0m   [0mINSERT INTO `taggings` (`tag_id`, `taggable_type`, `taggable_id`, `created_at`) VALUES(4, 'Photo', 8, '2011-04-23 09:21:10')[0m
+[paperclip] Saving attachments.
+  [4;36;1mSQL (15.6ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/photos/8
+Completed in 156ms (DB: 16) | 302 Found [http://localhost/photos/8]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-23 17:21:10) [GET]
+  Parameters: {"action"=>"show", "id"=>"8", "controller"=>"photos"}
+  [4;35;1mPhoto Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` WHERE (`photos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 47ms (View: 16, DB: 16) | 200 OK [http://localhost/photos/8]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-23 17:21:11) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` ORDER BY updated_at DESC LIMIT 0, 10[0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN photos ON photos.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Photo') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;35;1mUser Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mPhoto Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 8)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 6)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 5)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 4)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 3)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 2)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 1)) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 78ms (View: 62, DB: 0) | 200 OK [http://localhost/photos]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#tag (for 127.0.0.1 at 2011-04-23 17:21:14) [GET]
+  Parameters: {"action"=>"tag", "id"=>"rails", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT DISTINCT photos.* FROM `photos` INNER JOIN taggings photos_taggings ON photos_taggings.taggable_id = photos.id AND photos_taggings.taggable_type = 'Photo' INNER JOIN tags photos_tags ON photos_tags.id = photos_taggings.tag_id WHERE ((photos_tags.name LIKE 'rails')) [0m
+Rendering template within layouts/application
+Rendering photos/tag
+  [4;35;1mPhoto Columns (15.6ms)[0m   [0mSHOW FIELDS FROM `photos`[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.6ms)
+Completed in 47ms (View: 16, DB: 16) | 200 OK [http://localhost/photos/tag?id=rails]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2011-04-23 17:21:15) [GET]
+  Parameters: {"action"=>"show", "id"=>"8", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mPhoto Load (0.0ms)[0m   [0mSELECT * FROM `photos` WHERE (`photos`.`id` = 8) [0m
+Rendering template within layouts/application
+Rendering photos/show
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendered users/_user_bar (62.5ms)
+Completed in 94ms (View: 78, DB: 0) | 200 OK [http://localhost/photos/8]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2011-04-23 17:21:17) [GET]
+  Parameters: {"action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.0ms)[0m   [0;1mSELECT * FROM `photos` ORDER BY updated_at DESC LIMIT 0, 10[0m
+  [4;35;1mTag Load (0.0ms)[0m   [0mSELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN photos ON photos.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Photo') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+Rendering template within layouts/application
+Rendering photos/index
+  [4;36;1mUser Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;36;1mPhoto Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `photos`[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 8)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 6)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 5)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 4)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 3)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 2)) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mTag Load (0.0ms)[0m   [0;1mSELECT `tags`.* FROM `tags` INNER JOIN `taggings` ON `tags`.id = `taggings`.tag_id WHERE ((`taggings`.taggable_type = 'Photo') AND (`taggings`.taggable_id = 1)) [0m
+Rendered users/_user_bar (0.0ms)
+Completed in 94ms (View: 47, DB: 16) | 200 OK [http://localhost/photos]

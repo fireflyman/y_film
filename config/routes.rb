@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :directors
 
-  map.resources :photos
+  map.resources :photos, :collection => {:tag => :get}
   map.root :controller =>:users
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
